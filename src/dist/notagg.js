@@ -34,7 +34,7 @@
             props.pathname = pageOn();
             props.timestamp = new Date();
 
-            console.log('props', props);
+            // console.log('props', props);
 
             _send('http://localhost:4000/notagg/track/', 'POST', props);
         }
