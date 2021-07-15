@@ -22,10 +22,12 @@
 
         function _init() {
             _pushUserId(_cookieCheckId());
+            // _setCookie();
         }
 
         function _push(props) {
             // console.log(event.target.parentNode);
+            _pushUserId(_cookieCheckId());
             props.eventName = props.contentType + '_' + props.eventName + '_' + props.contentTitle;
             props.userId = _cookieRead('_taggUserId');
             props.pagetitle = _pagetitleParser();
@@ -44,9 +46,14 @@
             }
         }
 
+        function _setCookie() {
+
+            _send('http://localhost:4000/cookie/create/', 'GET');
+        }
+
         function _pushUserId(userId) {
             console.log('_pushUser:', userId);
-            _send('http://localhost:4000/user/cookieUserId/', 'POST', {userId: userId, timestamp: new Date()});
+            _send('http://localhost:4000/notagg/cookieUserId/', 'POST', {userId: userId, timestamp: new Date()});
         }
 
 
